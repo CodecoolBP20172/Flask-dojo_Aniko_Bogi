@@ -5,11 +5,9 @@ app = Flask(__name__)
 
 @app.route("/request-counter", methods=['GET', 'POST'])
 def route_request_counter():
+    counter = 0
 
-    return redirect(
-
-
-
+    return redirect("/request-counter")
 
 
 if __name__ == "__main__":
