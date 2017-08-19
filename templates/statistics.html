@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Statistics</title>
+    </head>
+    <body>
+        <table border = 1>
+            <tr>
+                <th>Method</th>
+                <th>Count</th>
+            </tr>  
+            {% for line in content %}
+            <tr>
+                <th>{{ line[0] }}</th>
+                <th>{{ line[1] }}</th>
+            </tr>
+            {% endfor %}
+        </table><br>
+        <a href="/request-counter">Back to request-counter</a>
+    </body>
+</html>
