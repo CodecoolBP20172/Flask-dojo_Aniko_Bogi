@@ -1,14 +1,28 @@
-from flask import Flask, redirect, request, session
+from flask import Flask, redirect, request, session, render_template
 
 app = Flask(__name__)
 
-
-@app.route("/request-counter", methods=['GET', 'POST'])
+@app.route("/request-counter", methods=["GET", "POST", "PUT", "DELETE"])
 def route_request_counter():
-    counter = 0
+    request_counter = {}
+    
+    with open ("request_counts.txt", "r") as f:
+        for line in f:
+            line = line.split(":")
+            request_counter[line[0]] = int(line[1])
+            
+    if request.method in request_counter:
+        request_counter[request.method] += 1
+                
+    with open ("request_counts.txt", "w") as f:
+        for i in request_counter:
+            line = i + ":" + str(request_counter[i]) + "\n"
+            f.write(line)
+    
+    return render_template("form.html")
 
-    return redirect("/request-counter")
-
+#@app.route("/statistics", methods=["GET"])
+#def route_request_counter():
 
 if __name__ == "__main__":
     app.secret_key = "app_magic"  # Change the content of this string
@@ -16,3 +30,5 @@ if __name__ == "__main__":
         debug=True,
         port=5000
     )
+
+
