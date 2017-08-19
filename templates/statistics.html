@@ -10,10 +10,10 @@
                 <th>Method</th>
                 <th>Count</th>
             </tr>  
-            {% for line in content %}
+            {% for key in content %}
             <tr>
-                <th>{{ line[0] }}</th>
-                <th>{{ line[1] }}</th>
+                <th>{{ key }}</th>
+                <th>{{ content[key] }}</th>
             </tr>
             {% endfor %}
         </table><br>
